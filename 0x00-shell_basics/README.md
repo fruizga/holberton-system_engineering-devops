@@ -6,3 +6,5 @@
 
 3-listfiles --> This command allows to view the current directory's in a long format
 
+4-listmorefiles --> This script allows display contente including hidden files.
+
