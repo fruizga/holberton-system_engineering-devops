@@ -1,6 +1,5 @@
-
 #!/usr/bin/env bash
-# using until
+#using until
 i="0"
 until [ $i -gt 9 ]
 do
