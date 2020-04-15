@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Installing HAproxy 1.6
+sudo apt-get -y install software-properties-common
+sudo add-apt-repository -y ppa:vbernat/haproxy-1.6
+sudo apt-get -y update
+sudo apt-get -y install haproxy=1.6.\*
+echo "\
+frontend local_nodes
+    bind *:80
+    mode http
+    default_backend nodes
+backend nodes
+    mode http
+    balance roundrobin
+    server 1096-web-01 34.74.1.177:80 check
+    server 1096-web-02 35.227.127.123:80 check
+" | sudo tee -a /etc/haproxy/haproxy.cfg
+sudo service haproxy restart
