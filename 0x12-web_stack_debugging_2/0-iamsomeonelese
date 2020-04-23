@@ -1,4 +1,3 @@
 #!/usr/bin/env bash
-#prinst something
-echo $1
-
+# checking who a given user is
+sudo -u "$1" whoami
