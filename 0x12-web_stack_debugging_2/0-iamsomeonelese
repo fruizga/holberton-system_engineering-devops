@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#prinst something
+echo $1
+
