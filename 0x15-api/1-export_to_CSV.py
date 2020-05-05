@@ -1,19 +1,23 @@
 #!/usr/bin/python3
-"""xport data in the CSV format"""
-from csv import writer, QUOTE_ALL
-from sys import argv
-import requests
+""" Exports data in CSV format """
+
 import csv
+import json
+import requests
+import sys
+
 
 if __name__ == "__main__":
-    """export CSV"""
-    ar1 = argv[1]
-    url1 = requests.get("https://jsonplaceholder.typicode.com/users/{}\
-    ".format(ar1)).json()
-    url2 = requests.get("https://jsonplaceholder.typicode.com/todos?userId={}\
-    ".format(ar1)).json()
-    with open("{}.csv".format(ar1), 'w') as CVSfile:
-        result = writer(CVSfile, delimiter=',', quoting=QUOTE_ALL)
-        for i in url2:
-            result.writerow([ar1, url1.get('username'),
-                             i.get('completed'), i.get('title')])
+    """ Exports data in CSV format """
+
+    ar1 = int(sys.argv[1])
+    url1 = "https://jsonplaceholder.typicode.com/users/{}".format(ar1)
+    url2 = "https://jsonplaceholder.typicode.com/todos?userId={}".format(ar1)
+    user = requests.get(url1).json()
+    TODO = requests.get(url2).json()
+
+    with open('{}.csv'.format(ar1), mode='w') as f:
+        result = csv.writer(f, delimiter=',', quoting=csv.QUOTE_ALL)
+        for task in TODO:
+            result.writerow([ar1, user.get('username\
+            '), task.get('completed'), task.get('title')])
