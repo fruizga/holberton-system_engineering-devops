@@ -1,16 +1,21 @@
 #!/usr/bin/python3
-"""Using REST API, for a given employeeID."""
+"""Using this REST API, for a given employee ID,
+returns information about his/her TODO list progress."""
+import requests
 from sys import argv
-import requestsif __name__ == "__main__":
-    """Getting TODO"""
-    iD = argv[1]
-    Z = requests.get('https://jsonplaceholder.typicode.com/users/{}'.
-                     format(iD)).json()
-    Req_A = requests.get('https://jsonplaceholder.typicode.com/todos?userId={}'.
-                        format(iD)).json()
-    N = Z.get('name')
-    Req_Form = [i for i in Req_A if i.get('userId') == Z.get('id')]
-    Ready = [i for i in Req_Form if i.get('completed')]
+
+if __name__ == "__main__":
+    url1 = "https://jsonplaceholder.typicode.com/users/" + argv[1]
+    url2 = "https://jsonplaceholder.typicode.com/todos?userId=" + argv[1]
+    user = requests.get(url1).json()
+    todo_list = requests.get(url2).json()
+    done = 0
+    ready = []
+    for task in todo_list:
+        if task["completed"] is True:
+            done += 1
+            ready.append(task["title"])
     print("Employee {} is done with tasks({}/{}):".
-          format(N, len(Ready), len(Req_Form)))
-    [print('\t', i.get('title')) for i in Ready]
+          format(user['name'], done, len(todo_list)))
+    for task in ready:
+        print("\t {}".format(task))
