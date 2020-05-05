@@ -17,6 +17,7 @@ if __name__ == "__main__":
                 dict['task'] = i.get('title')
                 dict['completed'] = i.get('completed')
                 dict['username'] = Name
-        a_Dict[ar1] = url2
+                dict.append(dictionary)
+        a_Dict[ar1] = dict
     with open("todo_all_employees.json", 'w') as JSONfile:
         json.dump(a_Dict, JSONfile)
