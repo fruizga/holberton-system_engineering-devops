@@ -5,7 +5,7 @@ import jsonif __name__ == "__main__":
     """export JSON"""
     u = requests.get("https://jsonplaceholder.typicode.com/users").json()
     url2 = requests.get("https://jsonplaceholder.typicode.com/todos").json()
-    Dict = {}
+    a_Dict = {}
     for i in u:
         ar1 = i.get("id")
         Name = i.get('username')
@@ -15,6 +15,6 @@ import jsonif __name__ == "__main__":
                 dict['task'] = i.get('title')
                 dict['completed'] = i.get('completed')
                 dict['username'] = Name
-        Dict[ar1] = url2
+        a_Dict[ar1] = url2
     with open("todo_all_employees.json", 'w') as JSONfile:
-        json.dump(MyDict, JSONfile)
+        json.dump(a_Dict, JSONfile)
