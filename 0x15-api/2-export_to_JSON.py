@@ -13,11 +13,11 @@ if __name__ == "__main__":
                         format(ar1)).json()
     results = []
     for i in url2:
-        res = {}
-        res['task'] = i.get('title')
-        res['completed'] = i.get('completed')
-        res['username'] = u.get('username')
-        results.append(res)
+        result = {}
+        result['task'] = i.get('title')
+        result['completed'] = i.get('completed')
+        result['username'] = u.get('username')
+        results.append(result)
     FileInfo = {}
     FileInfo[ar1] = results
     with open("{}.json".format(ar1), 'w') as JSONfile:
