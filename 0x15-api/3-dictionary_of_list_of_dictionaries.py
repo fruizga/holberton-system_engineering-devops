@@ -1,7 +1,9 @@
 #!/usr/bin/python3
 """Exports data in JSON format"""
 import requests
-import jsonif __name__ == "__main__":
+import json
+
+if __name__ == "__main__":
     """export JSON"""
     u = requests.get("https://jsonplaceholder.typicode.com/users").json()
     url2 = requests.get("https://jsonplaceholder.typicode.com/todos").json()
