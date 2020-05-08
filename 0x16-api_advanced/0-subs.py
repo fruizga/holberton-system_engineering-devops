@@ -7,8 +7,8 @@ def number_of_subscribers(subreddit):
     """Returns number of subscribers"""
     headers = {'user-agent': 'X-Modhash'}
     url = 'https://www.reddit.com/r/'
-    req = requests.get(url + '{}/about.json'.format(subreddit), headers=headers)
-    subs = req.json()
+    re = requests.get(url + '{}/about.json'.format(subreddit), headers=headers)
+    subs = re.json()
     try:
         all_subs = subs['data']['subscribers']
         return all_subs
